@@ -17,6 +17,9 @@ You will also see any lint errors in the console.
 ## API Keys
 The API key is set in Map.js:18 and MapPosition.js:16. If an error dialog pops up when searching for the address, please try replacing the API key with a new one.
 
+## Search results
+The app currently can only display the first address in the result list returned by the APIs. Future improvements can include allowing user to select address from result list.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
