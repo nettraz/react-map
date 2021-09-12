@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Map from './Map';
+import MapPosition from './MapPosition';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      zoom: 0,
+      lat: 0,
+      lng: 0,
+      addr: '',
+      results: []
+    }
+  }
+
+  handleInputChange = (name, value) => {
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleMapViewChange = (zoom, lat, lng, addr, results) => {
+    this.setState({
+      lat,
+      lng,
+      zoom,
+      addr,
+      results
+    })
+  }
+
+  render() {
+    const {
+      zoom,
+      lat,
+      lng,
+      addr
+    } = this.state;
+    return (
+      <div className="App">
+        <Map
+          lat={lat}
+          lng={lng}
+          onMapViewChange={this.handleMapViewChange}
+          zoom={zoom}
+        />
+        <MapPosition
+          lat={lat}
+          lng={lng}
+          onChange={this.handleInputChange}
+          zoom={zoom}
+          addr={addr}
+        />
+      </div>
+    );
+  }
 }
-
-export default App;
