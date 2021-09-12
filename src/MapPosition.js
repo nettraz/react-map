@@ -28,6 +28,25 @@ export default class MapPosition extends React.Component {
         onChange(ev.target.name, ev.target.value);
     }
 
+    handleOnKeyUp = (ev) => {
+        if (ev.key === 'Enter') {
+            const {
+                onChange
+            } = this.props;
+            this.service.autosuggest({
+                // Search query
+                q: this.props.addr,
+                // Center of the search context
+                at: this.props.lat + ',' + this.props.lng
+              }, (result) => {
+                let {position, title} = result.items[0];
+                onChange('addr', title)
+                onChange('lat', position.lat)
+                onChange('lng', position.lng)
+              }, alert);
+        }
+    }
+
     handleOnClick = (ev) => {
         const {
             onChange
@@ -60,7 +79,6 @@ export default class MapPosition extends React.Component {
                 onChange={this.handleOnChange}
                 name="zoom"
                 type="number"
-                disabled="true"
                 value={zoom}
             />
             </div>
@@ -88,6 +106,7 @@ export default class MapPosition extends React.Component {
             Address:
             <input
                 onChange={this.handleOnChange}
+                onKeyUp={this.handleOnKeyUp}
                 name="addr"
                 type="text"
                 value={addr}

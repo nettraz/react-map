@@ -6,9 +6,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      zoom: 0,
-      lat: 0,
-      lng: 0,
+      zoom: 10,
+      lat: 1.29,
+      lng: 103.85,
       addr: '',
       results: []
     }

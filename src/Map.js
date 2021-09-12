@@ -23,8 +23,8 @@ export default class Map extends React.Component {
             layers.vector.normal.map,
             {
             pixelRatio: window.devicePixelRatio,
-            center: {lat: 0, lng: 0},
-            zoom: 2,
+            center: {lat: 1.29, lng: 103.85},
+            zoom: 10,
             },
         );
         onResize(this.ref.current, () => {
